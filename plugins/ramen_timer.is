@@ -1,4 +1,6 @@
 ///@ 0.12.4
+// 自由に複製・改変していただいて構いません。
+// CC0 1.0 https://creativecommons.org/publicdomain/zero/1.0/deed.ja
 ### {
   name: "ラーメンタイマー"
   version: "1.0.0"
@@ -24,7 +26,7 @@ var ramenCountDown = 0
   			    	rounded: true
   			    	primary: true
   			    	form: {
-  			    		text: `ラーメン作成中...🍜 のこり{ramenCountDown.to_str()} 秒{Str:lf}#ラーメン作る🍜`
+  			    		text: `ラーメン作成中...🍜 のこり{ramenCountDown.to_str()} 秒{Str:lf}#ラーメン作る🍜{Str:lf}{THIS_URL}`
   			    	}
   			    })
       		]
@@ -45,7 +47,7 @@ var ramenCountDown = 0
       				rounded: true
       				primary: true
       				form: {
-      					text: `{ramenMin}分待っておいしいラーメンできた！🍜🍜🍜🍜🍜🍜🍜{Str:lf}#ラーメン作る🍜`
+      					text: `{ramenMin}分待っておいしいラーメンできた！🍜🍜🍜🍜🍜🍜🍜{Str:lf}#ラーメン作る🍜{Str:lf}{THIS_URL}`
       				}
       			})
       		]
