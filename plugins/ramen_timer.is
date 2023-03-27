@@ -1,4 +1,6 @@
 ///@ 0.12.4
+// https://misskey.io/play/9cuimmaukj
+
 // 自由に複製・改変していただいて構いません。
 // CC0 1.0 https://creativecommons.org/publicdomain/zero/1.0/deed.ja
 ### {
@@ -51,7 +53,7 @@ var ramenCountDown = 0
       				}
       			})
       		]
-      	})
+      	  })
       ])
   })
 }
