@@ -1,0 +1,79 @@
+///@ 0.12.4
+### {
+  name: "ラーメンタイマー"
+  version: "1.0.0"
+  author: "@716doremi"
+  description: "美味しいラーメンを作ろう"
+}
+
+var ramenMin = 3
+var ramenCountDown = 0
+
+@start() {
+  Mk:dialog("ラーメン作る🍜" "美味しいラーメンを作ろう！！🍜")
+  let ramenMillSecond = ramenMin * 60 * 1000
+  ramenCountDown = ramenMin * 60
+  let stopInterval = Async:interval(1000, @() {
+      Ui:render([
+      	Ui:C:container({
+      		align: 'center'
+      		children: [
+      			Ui:C:mfm({ text: `ラーメン作成中...🍜 のこり{ramenCountDown.to_str()} 秒` })
+  			    Ui:C:postFormButton({
+  			    	text: "投稿する"
+  			    	rounded: true
+  			    	primary: true
+  			    	form: {
+  			    		text: `ラーメン作成中...🍜 のこり{ramenCountDown.to_str()} 秒{Str:lf}#ラーメン作る🍜`
+  			    	}
+  			    })
+      		]
+      	})
+     ])
+     ramenCountDown = ramenCountDown - 1
+  }, true)
+  Async:timeout(ramenMillSecond, @() {
+      stopInterval()
+      Mk:dialog("完成！🍜" "ラーメンできた！🍜")
+      Ui:render([
+      	Ui:C:container({
+      		align: 'center'
+      		children: [
+      			Ui:C:mfm({ text: `{ramenMin}分待っておいしいラーメンできた！🍜🍜🍜🍜🍜🍜🍜` })
+      			Ui:C:postFormButton({
+      				text: "投稿する"
+      				rounded: true
+      				primary: true
+      				form: {
+      					text: `{ramenMin}分待っておいしいラーメンできた！🍜🍜🍜🍜🍜🍜🍜{Str:lf}#ラーメン作る🍜`
+      				}
+      			})
+      		]
+      	})
+      ])
+  })
+}
+
+// UI
+Ui:render([
+	Ui:C:container({
+		align: 'center'
+		children: [
+			Ui:C:mfm({ text: "ラーメン作る！" })
+			Ui:C:buttons({
+			buttons: [{
+                text: "始める"
+                primary: false
+                rounded: false
+                onClick: start
+                }]
+			})
+			  Ui:C:numberInput({
+              	onInput: @(number){ ramenMin = number }
+              	default: 3
+              	label: "分"
+              	caption: "何分待つ？"
+              })
+		]
+	})
+])
